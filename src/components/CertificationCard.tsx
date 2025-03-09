@@ -27,7 +27,7 @@ after:z-10 after:content-[''] after:absolute after:inset-0
       <div className="w-full h-32 mb-4 relative">
         {/* Use next/image if image is StaticImageData, else use img */}
         {typeof image === "string" ? (
-          <img
+          <Image
             src={image}
             alt={title}
             className="w-full h-full object-cover rounded-md"

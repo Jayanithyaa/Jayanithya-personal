@@ -79,7 +79,7 @@ export const HeroSection = () => {
             <div className="font-extralight text-emerald-300/70 animate-bounce">
               Hello
             </div>
-            <div className="font-sans">I'm Jayanithya</div>
+            <div className="font-sans">I&apos;m Jayanithya</div>
             <div className="font-extralight text-sm tracking-[0.3em] mt-4">
               - Final year undergraduate -
             </div>
