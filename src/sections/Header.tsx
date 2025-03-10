@@ -35,9 +35,9 @@ export const Header = () => {
           <a href="#projects" className="nav-item" onClick={handleClick}>
             Projects
           </a>
-          <a href="#experience" className="nav-item" onClick={handleClick}>
+          {/* <a href="#experience" className="nav-item" onClick={handleClick}>
             Experience
-          </a>
+          </a> */}
           <a
             href="#contact"
             className="nav-item bg-white text-gray-900 hover:bg-white/70 hover:text-gray-900"
