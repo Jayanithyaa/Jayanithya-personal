@@ -13,9 +13,9 @@ export default function Home() {
       <Header />
       <HeroSection />
       <AboutSection />
-      <ProjectsSection />
       <TapeSection />
-      <TestimonialsSection />
+      <ProjectsSection />
+      {/* <TestimonialsSection /> */}
       <ContactSection />
       <Footer />
     </div>
