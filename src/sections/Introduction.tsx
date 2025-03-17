@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion"; // Import Framer Motion
+import { motion, AnimatePresence } from "framer-motion";
 import myPhoto from "@/assets/images/my-photo.png";
 import CheckIcon from "@/assets/icons/check-circle.svg";
 import { Education } from "@/sections/Education";
@@ -11,10 +11,31 @@ import { CertificationSection } from "./CertificationSection";
 import VolunteeringSection from "./volunteeringAndLeadership";
 
 export const Introduction = () => {
-  const [visibleSection, setVisibleSection] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
-  const toggleSection = (section: string) => {
-    setVisibleSection(visibleSection === section ? null : section);
+  // Define allowed section names
+  type SectionName = "Experiences" | "Education" | "Certificate" | "Volunteering & Leadership";
+
+  // Create refs with a defined type
+  const sectionRefs: Record<SectionName, React.RefObject<HTMLDivElement>> = {
+    Experiences: useRef<HTMLDivElement>(null),
+    Education: useRef<HTMLDivElement>(null),
+    Certificate: useRef<HTMLDivElement>(null),
+    "Volunteering & Leadership": useRef<HTMLDivElement>(null),
+  };
+
+  const handleSectionClick = (section: SectionName) => {
+    if (activeSection === section) {
+      setActiveSection(null); // Close if already open
+    } else {
+      setActiveSection(section);
+      setTimeout(() => {
+        sectionRefs[section]?.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 200);
+    }
   };
 
   return (
@@ -23,7 +44,7 @@ export const Introduction = () => {
       <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-8 w-full max-w-5xl">
         {/* Left Section - Text Content */}
         <div className="max-w-lg text-center md:text-left">
-          <h2 className="font-mono text-2xl  bg-gradient-to-r from-emerald-300 to-sky-400 bg-clip-text text-transparent">
+          <h2 className="font-mono text-2xl bg-gradient-to-r from-emerald-300 to-sky-400 bg-clip-text text-transparent">
             Hey there! It&apos;s me,
           </h2>
 
@@ -39,16 +60,13 @@ export const Introduction = () => {
           </p>
           <ul className="space-y-2 text-white/50 mt-8">
             <li className="flex items-center gap-2">
-              <CheckIcon className="size-5 md:size-6 text-gray-400" /> Frontend
-              Development
+              <CheckIcon className="size-5 md:size-6 text-gray-400" /> Frontend Development
             </li>
             <li className="flex items-center gap-2">
-              <CheckIcon className="size-5 md:size-6 text-gray-400" /> Backend
-              Development
+              <CheckIcon className="size-5 md:size-6 text-gray-400" /> Backend Development
             </li>
             <li className="flex items-center gap-2">
-              <CheckIcon className="size-5 md:size-6 text-gray-400" /> UI/UX
-              Design
+              <CheckIcon className="size-5 md:size-6 text-gray-400" /> UI/UX Design
             </li>
           </ul>
         </div>
@@ -65,25 +83,18 @@ export const Introduction = () => {
 
       {/* Clickable Sections */}
       <div className="w-full flex justify-start gap-8 mt-6">
-        {[
-          { title: "Experiences", component: <ExperienceRoadmap /> },
-          { title: "Education", component: <Education /> },
-          { title: "Certificate", component: <CertificationSection /> },
-          {
-            title: "Volunteering & Leadership",
-            component: <VolunteeringSection />,
-          },
-        ].map(({ title }) => (
+        {(Object.keys(sectionRefs) as SectionName[]).map((title) => (
           <button
             key={title}
-            onClick={() => toggleSection(title)}
-            className="relative text-sky-200 text-lg font-sans hover:-rotate-3 transition duration-300 hover:text-emerald-400 flex flex-col items-center group"
+            onClick={() => handleSectionClick(title)}
+            className={`relative text-lg font-sans transition duration-300 flex flex-col items-center group ${
+              activeSection === title ? "text-emerald-400" : "text-sky-200 hover:text-emerald-400"
+            }`}
           >
             <span className="relative">{title}</span>
-            {/* Smooth appearing underline */}
             <div
               className={`absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-emerald-300 to-sky-400 transition-all duration-500 ease-in-out ${
-                visibleSection === title
+                activeSection === title
                   ? "w-full opacity-100"
                   : "group-hover:w-full group-hover:opacity-100"
               }`}
@@ -92,31 +103,29 @@ export const Introduction = () => {
         ))}
       </div>
 
-      {/* Collapsible Content with Framer Motion for smooth animation */}
-      <AnimatePresence mode="wait">
-        {visibleSection && (
-          <motion.div
-            key={visibleSection}
-            initial={{ opacity: 0, y: -10 }} // Start hidden & slightly higher
-            animate={{ opacity: 1, y: 0 }} // Smoothly appear
-            exit={{ opacity: 0, y: -10 }} // Disappear smoothly
-            transition={{ duration: 0.4, ease: "easeInOut" }} // Smooth transition
-            className="mt-6 w-full max-w-5xl p-6 bg-white/5 text-gray-300 rounded-lg"
-          >
-            {
-              [
-                { title: "Experiences", component: <ExperienceRoadmap /> },
-                { title: "Education", component: <Education /> },
-                { title: "Certificate", component: <CertificationSection /> },
-                {
-                  title: "Volunteering & Leadership",
-                  component: <VolunteeringSection />,
-                },
-              ].find((item) => item.title === visibleSection)?.component
-            }
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Collapsible Sections */}
+      <div className="w-full max-w-5xl mt-10">
+        {(Object.entries(sectionRefs) as [SectionName, React.RefObject<HTMLDivElement>][])
+          .map(([title, ref]) => (
+            <AnimatePresence key={title} mode="wait">
+              {activeSection === title && (
+                <motion.div
+                  ref={ref}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  className="mt-6 p-6 bg-white/5 text-gray-300 rounded-lg"
+                >
+                  {title === "Experiences" && <ExperienceRoadmap />}
+                  {title === "Education" && <Education />}
+                  {title === "Certificate" && <CertificationSection />}
+                  {title === "Volunteering & Leadership" && <VolunteeringSection />}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          ))}
+      </div>
     </div>
   );
 };
