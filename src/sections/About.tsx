@@ -98,9 +98,9 @@ const hobbies = [
 export const AboutSection = () => {
   const constraintRef = useRef(null);
   return (
-    <div className="py-20 lg:py-28">
+    <section id="about" className="py-20 lg:py-15">
       <div className="container">
-        <SectionHeader
+        <SectionHeader 
           eyebrow="About Me"
           title="A Glimpase Into My World"
           description="Learn more about who I am, what I do, what impresses me"
@@ -109,16 +109,19 @@ export const AboutSection = () => {
         <Introduction/>
         
         
+        
+        
         {/* <div className="mt-20 flex flex-col gap-8">
           <div className="grid md:grid grid-col-1 gap-8 md:grid-cols-5 lg:grid-cols-3"> */}
           <div className="mt-40 flex flex-col gap-8">
+          <section id="skills" className="py-20">
           <div className="grid md:grid grid-col-1 gap-8">
+          
             
           <Card className="h-[320px] p-0">
             <CardHeader
               title="My Toolbox"
-              description="Explore the Technologies and tools I use to craft expectional
-                digital experiences."
+              description="Explore the Technologies and tools I use to craft expectional digital experiences."
               className="px-6 pt-6"
             />
 
@@ -129,7 +132,9 @@ export const AboutSection = () => {
               itemsWrapperClassName="animate-move-right [animation-duration:20s]"
             />
           </Card>
+          
           </div>
+          </section>
           <div className="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-3 gap-8">
           <Card className="h-[320px] p-0 flex flex-col md:col-span-3 lg:col-span-2">
             <CardHeader
@@ -177,6 +182,6 @@ export const AboutSection = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
