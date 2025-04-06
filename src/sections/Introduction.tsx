@@ -40,6 +40,7 @@ export const Introduction = () => {
 
   return (
     <div className="mt-20 flex flex-col items-center">
+      {/* <div className="grid md:grid grid-col-1 gap-8"></div> */}
       {/* Top Section (Text + Image) */}
       <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-8 w-full max-w-5xl">
         {/* Left Section - Text Content */}
@@ -111,10 +112,9 @@ export const Introduction = () => {
               {activeSection === title && (
                 <motion.div
                   ref={ref}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  initial={{ opacity: 0, y: -350 }}
+                  animate={{ opacity: 3, y: 0 }}                 
+                  transition={{ duration: 0.7 }}
                   className="mt-6 p-6 bg-white/5 text-gray-300 rounded-lg"
                 >
                   {title === "Experiences" && <ExperienceRoadmap />}

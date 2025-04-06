@@ -4,19 +4,19 @@ import { link } from "fs";
 const footerLinks = [
   {
     title: "Linked",
-    href: "#",
+    href: "https://www.linkedin.com/in/jayanithya-madhushani-a5b306218/",
   },
   {
     title: "GitHub",
-    href: "#",
+    href: "https://github.com/Jayanithyaa",
   },
   {
     title: "Medium",
-    href: "#",
+    href: "https://medium.com/@jayanithyamadhushani",
   },
   {
     title: "HackerRank",
-    href: "#",
+    href: "https://www.hackerrank.com/profile/jayanithyamadhu1",
   },
 ];
 
@@ -32,10 +32,11 @@ export const Footer = () => {
           <nav className="flex flex-col md:flex-row items-center gap-8">
             {footerLinks.map((link) => (
               <a
-                href="#"
-                key={link.title}
-                className="inline-flex items-center gap-1.5"
-              >
+              href={link.href} // Correctly set the href attribute
+              key={link.title}
+              className="inline-flex items-center gap-1.5"
+              target="_blank" // Open links in a new tab
+            >
                 <ArrowUpRightIcon className="size-4" />
                 <span className="font-semibold">{link.title}</span>
               </a>
