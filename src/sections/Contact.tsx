@@ -4,8 +4,30 @@ import Image from "next/image";
 import mapImage from "@/assets/images/map.png";
 import smileMemoji from "@/assets/images/memoji-smile.png";
 import { FiArrowUpRight } from "react-icons/fi";
+import { FormEvent, useRef } from "react";
+import emailjs from '@emailjs/browser';
 
 export const ContactSection = () => {
+
+  const form = useRef<any>();
+
+  const sendEmail = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm('service_sf8qlef', 'template_7vaiz4e', form.current, {
+        publicKey: 'sR687nIkl-aYwpwVV',
+      })
+      .then(
+        () => {
+          console.log('SUCCESS!');
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+        },
+      );
+    };
+      
   return (
     <section id="contact" className="py-16 pt-12 lg:py-24 lg:pt-5">
       <div className="container">
@@ -33,7 +55,7 @@ export const ContactSection = () => {
                 Ready to bring your next project to life? Let&apos;s connect and discuss how I can help you achieve your goals.
               </p> */}
               <div>
-        <form className="space-y-3">
+        <form ref={form} className="space-y-3">
           <input
             type="text"
             placeholder="Full Name"
@@ -108,4 +130,5 @@ export const ContactSection = () => {
       
     </section>
   );
+
 };
