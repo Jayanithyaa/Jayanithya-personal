@@ -26,8 +26,8 @@ export const ContactSection = () => {
     e.preventDefault();
 
     emailjs
-      .sendForm('service_sf8qlef', 'template_7vaiz4e', form.current!, {
-        publicKey: 'sR687nIkl-aYwpwVV',
+      .sendForm('service_el55pg5', 'template_mz4x6tv', form.current!, {
+        publicKey: '0k4adXemzVD_GnIpe',
       })
       .then(
         () => {
@@ -86,7 +86,7 @@ export const ContactSection = () => {
                     placeholder="Your E-mail"
                     name="email"
                     required
-                    className="w-full p-3 rounded-full bg-white/20 text-black placeholder-white/70"
+                    className="w-full p-3 rounded-full focus:outline-gray-700  bg-white/20 text-black placeholder-white/70"
                     value={data.email}
                     onChange={(e) => setData({ ...data, email: e.target.value })}
                   />
@@ -95,7 +95,7 @@ export const ContactSection = () => {
                     placeholder="Your Contact Number"
                     name="number"
                     required
-                    className="w-full p-3 rounded-full bg-white/20 text-black placeholder-white/70"
+                    className="w-full p-3 rounded-full focus:outline-gray-700  bg-white/20 text-black placeholder-white/70"
                     value={data.number}
                     onChange={(e) => setData({ ...data, number: e.target.value })}
                   />
@@ -103,7 +103,7 @@ export const ContactSection = () => {
                     type="text"
                     placeholder="Subject"
                     name="subject"
-                    className="w-full p-3 rounded-full bg-white/20 text-black placeholder-white/70"
+                    className="w-full p-3 rounded-full focus:outline-gray-700  bg-white/20 text-black placeholder-white/70"
                     value={data.subject}
                     onChange={(e) => setData({ ...data, subject: e.target.value })}
                   />
@@ -113,7 +113,7 @@ export const ContactSection = () => {
                     placeholder="Write Your Message Here..."
                     rows={5}
                     required
-                    className="w-full p-3 rounded-lg bg-white/20 text-black placeholder-white/70"
+                    className="w-full p-3 rounded-lg focus:outline-gray-700  bg-white/20 text-black placeholder-white/70"
                     value={data.message}
                     onChange={(e) => setData({ ...data, message: e.target.value })}
                   />
@@ -135,7 +135,7 @@ export const ContactSection = () => {
                   <Image
                     src={smileMemoji}
                     alt="smiling memoji"
-                    className="size-20"
+                    className="size-13"
                   />
                 </div>
               </Card>
