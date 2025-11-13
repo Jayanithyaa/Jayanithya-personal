@@ -20,9 +20,25 @@ export const ExperienceRoadmap = () => {
           </div>
           <div className="pl-10">
             <h3 className="text-xl font-semibold text-white">
+              Application Support Engineer - Richard Pieris Group IT
+            </h3>
+            <p className="text-gray-400">June 2025 - Present</p>
+            <p className="text-white/60 text-sm mt-2">
+Provided application support and troubleshooting to ensure smooth business operations while developing and maintaining business reports using iReport/JasperReports. Collaborated with teams to optimize SQL queries, test new features, and document technical processes for efficient system performance.
+            </p>
+          </div>
+        </div>
+
+        {/* Associate Software Engineer */}
+        <div className="relative flex items-start gap-6">
+          <div className="absolute -left-7 w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg">
+            <TechIcon component={FaLaptopCode} />
+          </div>
+          <div className="pl-10">
+            <h3 className="text-xl font-semibold text-white">
               Associate Software Engineer - X ONT Software
             </h3>
-            <p className="text-gray-400">October 2023 - Present</p>
+            <p className="text-gray-400">June 2024 - September 2024</p>
             <p className="text-white/60 text-sm mt-2">
               Focused on backend development, implementing features in .NET, Angular, and working on complex software architecture.
             </p>
@@ -39,7 +55,7 @@ export const ExperienceRoadmap = () => {
             <h3 className="text-xl font-semibold text-white">
             Software Engineer Internship - X ONT Software
             </h3>
-            <p className="text-gray-400">June 2023 - September 2023</p>
+            <p className="text-gray-400">January 2024 - June 2024</p>
             <p className="text-white/60 text-sm mt-2">
               Worked on enhancing internal tools, bug fixes, and software development using .NET, Angular, and MS SQL.
             </p>

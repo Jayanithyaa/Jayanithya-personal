@@ -31,7 +31,7 @@ export const Education = () => {
             </p>
             <p className="text-gray-500">2020 - 2025</p>
             <p className="text-gray-300 text-sm mt-2">
-      🎯 Currently maintaining a good GPA with a focus on research in blockchain.
+      🎯 Pursued Bachelor of Science (Hons) in Information Technology & Management from Faculty of IT, University of Moratuwa.
     </p>
             
           </div>
